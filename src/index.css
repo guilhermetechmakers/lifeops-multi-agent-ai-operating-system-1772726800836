@@ -1,68 +1,90 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
+@layer base {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    /* LifeOps UI Guide - Light mode */
+    --primary: 31 42 68; /* Deep Indigo #1F2A44 */
+    --primary-foreground: 255 255 255;
+    --secondary: 246 247 251; /* Light Gray #F6F7FB */
+    --secondary-foreground: 11 18 48; /* #0B1230 */
+    --accent: 0 209 193; /* Electric Teal #00D1C1 */
+    --accent-foreground: 31 42 68;
+    --success: 46 204 113; /* Mint Green #2ECC71 */
+    --warning: 255 176 32; /* Amber #FFB020 */
+    --danger: 255 77 79; /* Coral Red #FF4D4F */
+    --background: 246 247 251; /* #F6F7FB */
+    --foreground: 11 18 48; /* #0B1230 */
+    --card: 255 255 255; /* #FFFFFF */
+    --card-foreground: 11 18 48;
+    --border: 229 231 235;
+    --input: 229 231 235;
+    --ring: 0 209 193;
+    --muted: 246 247 251;
+    --muted-foreground: 107 114 128; /* #6B7280 */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
   }
-  a:hover {
-    color: #747bff;
+
+  .dark {
+    --primary: 0 209 193;
+    --primary-foreground: 31 42 68;
+    --secondary: 31 42 68;
+    --secondary-foreground: 255 255 255;
+    --accent: 0 209 193;
+    --accent-foreground: 31 42 68;
+    --background: 11 18 48;
+    --foreground: 246 247 251;
+    --card: 31 42 68;
+    --card-foreground: 246 247 251;
+    --border: 55 65 81;
+    --input: 55 65 81;
+    --muted: 31 42 68;
+    --muted-foreground: 156 163 175;
   }
-  button {
-    background-color: #f9f9f9;
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-accent to-primary;
+  }
+
+  .gradient-border {
+    @apply relative;
+    background: linear-gradient(var(--background), var(--background)) padding-box,
+      linear-gradient(135deg, rgb(var(--accent)), rgb(var(--primary))) border-box;
+    border: 1px solid transparent;
   }
 }
